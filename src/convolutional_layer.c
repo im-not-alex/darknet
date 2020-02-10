@@ -645,7 +645,7 @@ convolutional_layer make_convolutional_layer(int batch, int steps, int h, int w,
 
     //fprintf(stderr, "conv  %5d %2d x%2d /%2d  %4d x%4d x%4d   ->  %4d x%4d x%4d\n", n, size, size, stride, w, h, c, l.out_w, l.out_h, l.out_c);
     l.bflops = (2.0 * l.nweights * l.out_h*l.out_w) / 1000000000.;
-    if (l.xnor) l.bflops = l.bflops / 32;
+    /*if (l.xnor) l.bflops = l.bflops / 32;
     if (l.xnor && l.use_bin_output) fprintf(stderr, "convXB");
     else if (l.xnor) fprintf(stderr, "convX ");
     else if (l.share_layer) fprintf(stderr, "convS ");
@@ -664,9 +664,9 @@ convolutional_layer make_convolutional_layer(int batch, int steps, int h, int w,
     fprintf(stderr, "%4d x%4d x%4d -> %4d x%4d x%4d %5.3f BF\n", w, h, c, l.out_w, l.out_h, l.out_c, l.bflops);
 
     //fprintf(stderr, "%5d/%2d %2d x%2d /%2d(%d)%4d x%4d x%4d  -> %4d x%4d x%4d %5.3f BF\n", n, groups, size, size, stride, dilation, w, h, c, l.out_w, l.out_h, l.out_c, l.bflops);
-
+ */
     if (l.antialiasing) {
-        printf("AA:  ");
+        //printf("AA:  ");
         l.input_layer = (layer*)calloc(1, sizeof(layer));
         int blur_size = 3;
         int blur_pad = blur_size / 2;
@@ -835,7 +835,7 @@ void resize_convolutional_layer(convolutional_layer *l, int w, int h)
     size_t total_byte;
     CHECK_CUDA(cudaMemGetInfo(&free_byte, &total_byte));
     if (l->workspace_size > free_byte || l->workspace_size >= total_byte / 2) {
-        printf(" used slow CUDNN algo without Workspace! Need memory: %zu, available: %zu\n", l->workspace_size, (free_byte < total_byte/2) ? free_byte : total_byte/2);
+        //printf(" used slow CUDNN algo without Workspace! Need memory: %zu, available: %zu\n", l->workspace_size, (free_byte < total_byte/2) ? free_byte : total_byte/2);
         cudnn_convolutional_setup(l, cudnn_smallest, 0);
         l->workspace_size = get_convolutional_workspace_size(*l);
     }
