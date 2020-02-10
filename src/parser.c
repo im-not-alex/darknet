@@ -421,7 +421,7 @@ layer parse_yolo(list *options, size_params params)
     else if (strcmp(iou_loss, "diou") == 0) l.iou_loss = DIOU;
     else if (strcmp(iou_loss, "ciou") == 0) l.iou_loss = CIOU;
     else l.iou_loss = IOU;
-    fprintf(stderr, "[yolo] params: iou loss: %s (%d), iou_norm: %2.2f, cls_norm: %2.2f, scale_x_y: %2.2f\n",
+    //fprintf(stderr, "[yolo] params: iou loss: %s (%d), iou_norm: %2.2f, cls_norm: %2.2f, scale_x_y: %2.2f\n",
         iou_loss, l.iou_loss, l.iou_normalizer, l.cls_normalizer, l.scale_x_y);
 
     l.beta_nms = option_find_float_quiet(options, "beta_nms", 0.6);
@@ -1199,7 +1199,7 @@ network parse_network_cfg_custom(char *filename, int batch, int time_steps)
     params.batch = net.batch;
     params.time_steps = net.time_steps;
     params.net = net;
-    printf("batch = %d, time_steps = %d, train = %d \n", net.batch, net.time_steps, params.train);
+    //printf("batch = %d, time_steps = %d, train = %d \n", net.batch, net.time_steps, params.train);
 
     int avg_outputs = 0;
     float bflops = 0;
@@ -1871,7 +1871,7 @@ void load_weights_upto(network *net, char *filename, int cutoff)
         fread(&iseen, sizeof(uint32_t), 1, fp);
         *net->seen = iseen;
     }
-    printf(", trained: %.0f K-images (%.0f Kilo-batches_64) \n", (float)(*net->seen / 1000), (float)(*net->seen / 64000));
+    //printf(", trained: %.0f K-images (%.0f Kilo-batches_64) \n", (float)(*net->seen / 1000), (float)(*net->seen / 64000));
     int transpose = (major > 1000) || (minor > 1000);
 
     int i;
