@@ -109,7 +109,7 @@ void test_writing(char *cfgfile, char *weightfile, char *filename)
         float *X = im.data;
         time=clock();
         network_predict(net, X);
-        printf("%s: Predicted in %f seconds.\n", input, sec(clock()-time));
+        //printf("%s: Predicted in %f seconds.\n", input, sec(clock()-time));
         image pred = get_network_image(net);
 
         image upsampled = resize_image(pred, im.w, im.h);
