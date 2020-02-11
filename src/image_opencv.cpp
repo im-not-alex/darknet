@@ -893,8 +893,7 @@ extern "C" void draw_detections_cv_v3(mat_cv* mat, detection *dets, int num, flo
                     }
                 }
             }
-            ///if (class_id >= 0) {
-                if(1) {
+            if (class_id >= 0) {
                 int width = std::max(1.0f, show_img->rows * .002f);
 
                 //if(0){
