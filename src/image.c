@@ -330,6 +330,7 @@ void draw_detections_v3(image im, detection *dets, int num, float thresh, char *
         else
             printf("\n");
         int j;
+        /*
         for (j = 0; j < classes; ++j) {
             if (selected_detections[i].det.prob[j] > thresh && j != best_class) {
                 //printf("%s: %.0f%%", names[j], selected_detections[i].det.prob[j] * 100);
@@ -344,6 +345,7 @@ void draw_detections_v3(image im, detection *dets, int num, float thresh, char *
                     printf("\n");
             }
         }
+        */
     }
 
     // image output
