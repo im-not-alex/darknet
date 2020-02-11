@@ -31,7 +31,7 @@ void train_captcha(char *cfgfile, char *weightfile)
     srand(time(0));
     float avg_loss = -1;
     char *base = basecfg(cfgfile);
-    printf("%s\n", base);
+    //printf("%s\n", base);
     network net = parse_network_cfg(cfgfile);
     if(weightfile){
         load_weights(&net, weightfile);
@@ -182,7 +182,7 @@ void valid_captcha(char *cfgfile, char *weightfile, char *filename)
    float avg_loss = -1;
    srand(time(0));
    char *base = basecfg(cfgfile);
-   printf("%s\n", base);
+   //printf("%s\n", base);
    network net = parse_network_cfg(cfgfile);
    if(weightfile){
    load_weights(&net, weightfile);
@@ -248,7 +248,7 @@ void encode_captcha(char *cfgfile, char *weightfile)
 float avg_loss = -1;
 srand(time(0));
 char *base = basecfg(cfgfile);
-printf("%s\n", base);
+//printf("%s\n", base);
 network net = parse_network_cfg(cfgfile);
 if(weightfile){
     load_weights(&net, weightfile);
@@ -285,7 +285,7 @@ void validate_captcha(char *cfgfile, char *weightfile)
 {
     srand(time(0));
     char *base = basecfg(cfgfile);
-    printf("%s\n", base);
+    //printf("%s\n", base);
     network net = parse_network_cfg(cfgfile);
     if(weightfile){
         load_weights(&net, weightfile);
@@ -322,7 +322,7 @@ void test_captcha(char *cfgfile, char *weightfile)
     setbuf(stdout, NULL);
     srand(time(0));
     //char *base = basecfg(cfgfile);
-    //printf("%s\n", base);
+    ////printf("%s\n", base);
     network net = parse_network_cfg(cfgfile);
     set_batch_network(&net, 1);
     if(weightfile){

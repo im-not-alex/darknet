@@ -33,7 +33,7 @@ void train_classifier(char *datacfg, char *cfgfile, char *weightfile, int *gpus,
 
     float avg_loss = -1;
     char *base = basecfg(cfgfile);
-    printf("%s\n", base);
+    //printf("%s\n", base);
     printf("%d\n", ngpus);
     network* nets = (network*)xcalloc(ngpus, sizeof(network));
 
@@ -244,7 +244,7 @@ void train_classifier(char *datacfg, char *cfgfile, char *weightfile, int *gpus,
    srand(time(0));
    float avg_loss = -1;
    char *base = basecfg(cfgfile);
-   printf("%s\n", base);
+   //printf("%s\n", base);
    network net = parse_network_cfg(cfgfile);
    if(weightfile){
    load_weights(&net, weightfile);

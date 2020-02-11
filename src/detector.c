@@ -60,7 +60,7 @@ void train_detector(char *datacfg, char *cfgfile, char *weightfile, int *gpus, i
 
     srand(time(0));
     char *base = basecfg(cfgfile);
-    printf("%s\n", base);
+    //printf("%s\n", base);
     float avg_loss = -1;
     network* nets = (network*)xcalloc(ngpus, sizeof(network));
 

@@ -21,7 +21,7 @@ void train_coco(char *cfgfile, char *weightfile)
     char* backup_directory = "backup/";
     srand(time(0));
     char *base = basecfg(cfgfile);
-    printf("%s\n", base);
+    //printf("%s\n", base);
     float avg_loss = -1;
     network net = parse_network_cfg(cfgfile);
     if(weightfile){

@@ -465,7 +465,7 @@ int main(int argc, char **argv)
     show_cuda_cudnn_info();
 #endif
 
-    show_opencv_info();
+    //show_opencv_info();
 
     if (0 == strcmp(argv[1], "average")){
         average(argc, argv);
