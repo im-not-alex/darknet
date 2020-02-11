@@ -322,7 +322,8 @@ void draw_detections_v3(image im, detection *dets, int num, float thresh, char *
         const int best_class = selected_detections[i].best_class;
         //printf("%s: %.0f%%", names[best_class],    selected_detections[i].det.prob[best_class] * 100);
         if (ext_output)
-            printf("%f,%f,%f,%f\n",
+            printf("%s,%f,%f,%f,%f\n",
+                names[best_class],
                 round((selected_detections[i].det.bbox.x - selected_detections[i].det.bbox.w / 2)*im.w),
                 round((selected_detections[i].det.bbox.y - selected_detections[i].det.bbox.h / 2)*im.h),
                 round(selected_detections[i].det.bbox.w*im.w), round(selected_detections[i].det.bbox.h*im.h));
@@ -334,7 +335,8 @@ void draw_detections_v3(image im, detection *dets, int num, float thresh, char *
                 //printf("%s: %.0f%%", names[j], selected_detections[i].det.prob[j] * 100);
 
                 if (ext_output)
-                    printf("%f,%f,%f,%f\n",
+                    printf("%s,%f,%f,%f,%f\n",
+                        names[j],
                         round((selected_detections[i].det.bbox.x - selected_detections[i].det.bbox.w / 2)*im.w),
                         round((selected_detections[i].det.bbox.y - selected_detections[i].det.bbox.h / 2)*im.h),
                         round(selected_detections[i].det.bbox.w*im.w), round(selected_detections[i].det.bbox.h*im.h));
