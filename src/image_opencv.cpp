@@ -884,16 +884,17 @@ extern "C" void draw_detections_cv_v3(mat_cv* mat, detection *dets, int num, flo
                         char buff[10];
                         sprintf(buff, " (%2.0f%%)", dets[i].prob[j] * 100);
                         strcat(labelstr, buff);
-                        printf("%s: %.0f%% ", names[j], dets[i].prob[j] * 100);
+                        //printf("%s: %.0f%% ", names[j], dets[i].prob[j] * 100);
                     }
                     else {
                         strcat(labelstr, ", ");
                         strcat(labelstr, names[j]);
-                        printf(", %s: %.0f%% ", names[j], dets[i].prob[j] * 100);
+                        //printf(", %s: %.0f%% ", names[j], dets[i].prob[j] * 100);
                     }
                 }
             }
-            if (class_id >= 0) {
+            ///if (class_id >= 0) {
+                if(1) {
                 int width = std::max(1.0f, show_img->rows * .002f);
 
                 //if(0){
@@ -933,7 +934,6 @@ extern "C" void draw_detections_cv_v3(mat_cv* mat, detection *dets, int num, flo
                 if (right > show_img->cols - 1) right = show_img->cols - 1;
                 if (top < 0) top = 0;
                 if (bot > show_img->rows - 1) bot = show_img->rows - 1;
-
                 //int b_x_center = (left + right) / 2;
                 //int b_y_center = (top + bot) / 2;
                 //int b_width = right - left;
@@ -978,8 +978,9 @@ extern "C" void draw_detections_cv_v3(mat_cv* mat, detection *dets, int num, flo
 
                 cv::rectangle(*show_img, pt1, pt2, color, width, 8, 0);
                 if (ext_output)
-                    printf("\t(left_x: %4.0f   top_y: %4.0f   width: %4.0f   height: %4.0f)\n",
-                    (float)left, (float)top, b.w*show_img->cols, b.h*show_img->rows);
+                    //printf("\t(left_x: %4.0f   top_y: %4.0f   width: %4.0f   height: %4.0f)\n",
+                    //(float)left, (float)top, b.w*show_img->cols, b.h*show_img->rows);
+                    printf("%4.0f,%4.0f,%4.0f,%4.0f\n",(float)left, (float)top, b.w*show_img->cols, b.h*show_img->rows);
                 else
                     printf("\n");
 
