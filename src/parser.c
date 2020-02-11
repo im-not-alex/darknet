@@ -384,7 +384,7 @@ float *get_classes_multipliers(char *cpc, const int classes)
         for (i = 0; i < classes_counters; ++i) classes_multipliers[i] = max_counter / counters_per_class[i];
         free(counters_per_class);
        //printf(" classes_multipliers: ");
-        for (i = 0; i < classes_counters; ++i)//printf("%.1f, ", classes_multipliers[i]);
+        //for (i = 0; i < classes_counters; ++i)//printf("%.1f, ", classes_multipliers[i]);
        //printf("\n");
     }
     return classes_multipliers;
@@ -422,7 +422,7 @@ layer parse_yolo(list *options, size_params params)
     else if (strcmp(iou_loss, "ciou") == 0) l.iou_loss = CIOU;
     else l.iou_loss = IOU;
     //fprintf(stderr, "[yolo] params: iou loss: %s (%d), iou_norm: %2.2f, cls_norm: %2.2f, scale_x_y: %2.2f\n",
-        iou_loss, l.iou_loss, l.iou_normalizer, l.cls_normalizer, l.scale_x_y);
+        //iou_loss, l.iou_loss, l.iou_normalizer, l.cls_normalizer, l.scale_x_y);
 
     l.beta_nms = option_find_float_quiet(options, "beta_nms", 0.6);
     char *nms_kind = option_find_str_quiet(options, "nms_kind", "default");
@@ -536,7 +536,7 @@ layer parse_gaussian_yolo(list *options, size_params params) // Gaussian_YOLOv3
     else l.yolo_point = YOLO_CENTER;
 
     //fprintf(stderr, "[Gaussian_yolo] iou loss: %s (%d), iou_norm: %2.2f, cls_norm: %2.2f, scale: %2.2f, point: %d\n",
-        iou_loss, l.iou_loss, l.iou_normalizer, l.cls_normalizer, l.scale_x_y, l.yolo_point);
+       // iou_loss, l.iou_loss, l.iou_normalizer, l.cls_normalizer, l.scale_x_y, l.yolo_point);
 
     l.jitter = option_find_float(options, "jitter", .2);
 
@@ -881,9 +881,9 @@ layer parse_shortcut(list *options, size_params params, network net)
         int index = layers[i];
         assert(params.w == net.layers[index].out_w && params.h == net.layers[index].out_h);
 
-        if (params.w != net.layers[index].out_w || params.h != net.layers[index].out_h || params.c != net.layers[index].out_c)
+       // if (params.w != net.layers[index].out_w || params.h != net.layers[index].out_h || params.c != net.layers[index].out_c)
             //fprintf(stderr, " (%4d x%4d x%4d) + (%4d x%4d x%4d) \n",
-                params.w, params.h, params.c, net.layers[index].out_w, net.layers[index].out_h, params.net.layers[index].out_c);
+         //       params.w, params.h, params.c, net.layers[index].out_w, net.layers[index].out_h, params.net.layers[index].out_c);
     }
 
     return s;
@@ -925,9 +925,9 @@ layer parse_sam(list *options, size_params params, network net)
     char *activation_s = option_find_str_quiet(options, "activation", "linear");
     ACTIVATION activation = get_activation(activation_s);
     s.activation = activation;
-    if (activation == SWISH || activation == MISH) {
+  //  if (activation == SWISH || activation == MISH) {
        //printf(" [sam] layer doesn't support SWISH or MISH activations \n");
-    }
+    //}
     return s;
 }
 
@@ -1003,7 +1003,7 @@ route_layer parse_route(list *options, size_params params)
     layer.w = first.w;
     layer.h = first.h;
     layer.c = layer.out_c;
-
+    /*
     if (n > 3) //fprintf(stderr, " \t    ");
     else if (n > 1) //fprintf(stderr, " \t            ");
     else //fprintf(stderr, " \t\t            ");
@@ -1012,7 +1012,7 @@ route_layer parse_route(list *options, size_params params)
     if (layer.groups > 1) //fprintf(stderr, "%d/%d", layer.group_id, layer.groups);
     else //fprintf(stderr, "   ");
     //fprintf(stderr, " -> %4d x%4d x%4d \n", layer.out_w, layer.out_h, layer.out_c);
-
+    */
     return layer;
 }
 
@@ -1098,7 +1098,7 @@ void parse_net_options(list *options, network *net)
         else net->cudnn_half = 0;
         //fprintf(stderr, " compute_capability = %d, cudnn_half = %d \n", compute_capability, net->cudnn_half);
     }
-    else //fprintf(stderr, " GPU isn't used \n");
+    else fprintf(stderr, " GPU isn't used \n");
 #endif
     if(net->policy == STEP){
         net->step = option_find_int(options, "step", 1);
@@ -1317,7 +1317,7 @@ network parse_network_cfg_custom(char *filename, int batch, int time_steps)
             l.delta_gpu = net.layers[count - 1].delta_gpu;
 #endif
         }else{
-            //fprintf(stderr, "Type not recognized: %s\n", s->type);
+            fprintf(stderr, "Type not recognized: %s\n", s->type);
         }
 
 #ifdef GPU
@@ -1468,7 +1468,7 @@ network parse_network_cfg_custom(char *filename, int batch, int time_steps)
     LAYER_TYPE lt = net.layers[net.n - 1].type;
     if ((net.w % 32 != 0 || net.h % 32 != 0) && (lt == YOLO || lt == REGION || lt == DETECTION)) {
        //printf("\n Warning: width=%d and height=%d in cfg-file must be divisible by 32 for default networks Yolo v1/v2/v3!!! \n\n",
-            net.w, net.h);
+        //    net.w, net.h);
     }
     return net;
 }
@@ -1783,16 +1783,16 @@ void load_convolutional_weights(layer l, FILE *fp)
     int num = l.nweights;
     int read_bytes;
     read_bytes = fread(l.biases, sizeof(float), l.n, fp);
-    if (read_bytes > 0 && read_bytes < l.n)//printf("\n Warning: Unexpected end of wights-file! l.biases - l.index = %d \n", l.index);
+    if (read_bytes > 0 && read_bytes < l.n) printf("\n Warning: Unexpected end of wights-file! l.biases - l.index = %d \n", l.index);
     //fread(l.weights, sizeof(float), num, fp); // as in connected layer
     if (l.batch_normalize && (!l.dontloadscales)){
         read_bytes = fread(l.scales, sizeof(float), l.n, fp);
-        if (read_bytes > 0 && read_bytes < l.n)//printf("\n Warning: Unexpected end of wights-file! l.scales - l.index = %d \n", l.index);
+        if (read_bytes > 0 && read_bytes < l.n) printf("\n Warning: Unexpected end of wights-file! l.scales - l.index = %d \n", l.index);
         read_bytes = fread(l.rolling_mean, sizeof(float), l.n, fp);
-        if (read_bytes > 0 && read_bytes < l.n)//printf("\n Warning: Unexpected end of wights-file! l.rolling_mean - l.index = %d \n", l.index);
+        if (read_bytes > 0 && read_bytes < l.n) printf("\n Warning: Unexpected end of wights-file! l.rolling_mean - l.index = %d \n", l.index);
         read_bytes = fread(l.rolling_variance, sizeof(float), l.n, fp);
-        if (read_bytes > 0 && read_bytes < l.n)//printf("\n Warning: Unexpected end of wights-file! l.rolling_variance - l.index = %d \n", l.index);
-        if(0){
+        if (read_bytes > 0 && read_bytes < l.n) printf("\n Warning: Unexpected end of wights-file! l.rolling_variance - l.index = %d \n", l.index);
+        /*if(0){
             int i;
             for(i = 0; i < l.n; ++i){
                //printf("%g, ", l.rolling_mean[i]);
@@ -1803,6 +1803,7 @@ void load_convolutional_weights(layer l, FILE *fp)
             }
            //printf("\n");
         }
+        */
         if(0){
             fill_cpu(l.n, 0, l.rolling_mean, 1);
             fill_cpu(l.n, 0, l.rolling_variance, 1);
