@@ -590,7 +590,7 @@ void engine_go(char *filename, char *weightfile, int multi)
                 }
                 char *l = 0;
                 while((l = fgetl(p))){
-                    printf("%s\n", l);
+                    //printf("%s\n", l);
                     free(l);
                 }
             } else {

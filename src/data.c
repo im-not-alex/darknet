@@ -1691,7 +1691,7 @@ data load_data_augment(char **paths, int n, int m, char **labels, int k, tree *h
                     strcat(buff_string, buff_tmp);
                 }
             }
-            printf("%s \n", buff_string);
+            //printf("%s \n", buff_string);
 
             if (show_imgs == 1) {
                 show_image(im, buff);

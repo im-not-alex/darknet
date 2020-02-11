@@ -585,7 +585,7 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile, char *out
     else if (0 == strcmp(type, "kitti")) {
         char buff2[1024];
         if (!outfile) outfile = "kitti_results";
-        printf("%s\n", outfile);
+        //printf("%s\n", outfile);
         snprintf(buff, 1024, "%s/%s", prefix, outfile);
         int mkd = make_directory(buff, 0777);
         snprintf(buff2, 1024, "%s/%s/data", prefix, outfile);
@@ -1421,7 +1421,7 @@ void calc_anchors(char *datacfg, int num_of_clusters, int width, int height, int
             float anchor_h = anchors_data.centers.vals[i][1]; //centers->data.fl[i * 2 + 1];
             if (width > 32) sprintf(buff, "%3.0f,%3.0f", anchor_w, anchor_h);
             else sprintf(buff, "%2.4f,%2.4f", anchor_w, anchor_h);
-            printf("%s", buff);
+            //printf("%s", buff);
             fwrite(buff, sizeof(char), strlen(buff), fw);
             if (i + 1 < num_of_clusters) {
                 fwrite(", ", sizeof(char), 2, fw);
