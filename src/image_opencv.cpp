@@ -980,7 +980,7 @@ extern "C" void draw_detections_cv_v3(mat_cv* mat, detection *dets, int num, flo
                 if (ext_output)
                     //printf("\t(left_x: %4.0f   top_y: %4.0f   width: %4.0f   height: %4.0f)\n",
                     //(float)left, (float)top, b.w*show_img->cols, b.h*show_img->rows);
-                    printf("%4.0f,%4.0f,%4.0f,%4.0f\n",(float)left, (float)top, b.w*show_img->cols, b.h*show_img->rows);
+                    printf("%f,%f,%f,%f\n",(float)left, (float)top, b.w*show_img->cols, b.h*show_img->rows);
                 else
                     printf("\n");
 
