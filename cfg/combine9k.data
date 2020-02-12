@@ -1,6 +1,6 @@
 classes= 9418
 #train  = /home/pjreddie/data/coco/trainvalno5k.txt
-train  = data/combine9k.train.list
+train  = data/train.txt
 valid  = /home/pjreddie/data/imagenet/det.val.files
 labels = data/9k.labels
 names  = data/9k.names
